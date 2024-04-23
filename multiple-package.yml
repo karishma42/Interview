@@ -2,9 +2,18 @@
 - hosts: webservers
   become: true
   tasks:
-  - name: installation of package
+  - name: installation of package on redhat
     when: ansible_os_family = "RedHat"
     yum: path={{item}} state=directory
+    with_items:
+    - curl
+    - nginx
+    - zip
+    - vim
+
+- name: installation of package on Debian
+    when: ansible_os_family = "Debian"
+    apt: path={{item}} state=directory
     with_items:
     - curl
     - nginx
