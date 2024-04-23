@@ -4,16 +4,15 @@
   tasks:
   - name: installation of package on redhat
     when: ansible_os_family = "RedHat"
-    yum: path={{item}} state=directory
+    yum: path={{item}} state=present
     with_items:
     - curl
     - nginx
     - zip
     - vim
-
-- name: installation of package on Debian
+  - name: installation of package on Debian
     when: ansible_os_family = "Debian"
-    apt: path={{item}} state=directory
+    apt: path={{item}} state=present
     with_items:
     - curl
     - nginx
