@@ -2,10 +2,11 @@
 - hosts: webservers
   become: true
   tasks:
-  - name: Create multiple directories
-    file: path={{item}} state=directory
+  - name: installation of package
+    when: ansible_os_family = "RedHat"
+    yum: path={{item}} state=directory
     with_items:
-    - 'curl'
-    - 'nginx'
-    - 'zip'
-    - 'vim'
+    - curl
+    - nginx
+    - zip
+    - vim
